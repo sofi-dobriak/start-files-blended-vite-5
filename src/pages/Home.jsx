@@ -13,7 +13,7 @@ import ExchangeInfo from '../components/ExchangeInfo/ExchangeInfo';
 
 const Home = () => {
   const isError = useSelector(selectError);
-  const isLoadign = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const exchangeInfo = useSelector(selectExchangeInfo);
 
   return (
@@ -21,13 +21,13 @@ const Home = () => {
       <Container>
         <ExchangeForm />
 
-        {!exchangeInfo && (
+        {!exchangeInfo && !isError && (
           <Heading info title="What currencies do you want to exchange?🙂" />
         )}
 
         {exchangeInfo && <ExchangeInfo {...exchangeInfo} />}
 
-        {isLoadign && <Loader />}
+        {isLoading && <Loader />}
 
         {isError && (
           <Heading
